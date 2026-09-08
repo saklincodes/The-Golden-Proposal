@@ -4,6 +4,18 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Preload all cutscene images immediately for zero-delay instant transitions
+  const cutsceneAssetSources = [
+    'images/girl and boy face to face.png',
+    'images/propose.png',
+    'images/hug.png',
+    'images/couple-happy.png'
+  ];
+  cutsceneAssetSources.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
+
   // ======================================================
   // 1. CUSTOM CURSOR & FLOATING HEARTS
   // ======================================================
@@ -371,9 +383,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       setCutsceneImage('images/propose.png', true, () => {
         playTone(783.99, 'sine', 0.6, 0.12);
-      });
-
-      setTimeout(() => {
         if (phase1Action) phase1Action.style.display = 'none';
         if (phase2Action) {
           phase2Action.style.display = 'flex';
@@ -385,7 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
             phase2Action.style.transform = 'translateY(0)';
           });
         }
-      }, 350);
+      });
       return;
     }
 
